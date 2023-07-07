@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-6">
+        <h1>{{title}}</h1>
+    </div>
+    <div class="col-md-6 text-end"><button class="btn btn-success">New Course</button></div>
+</div>
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <img [src]="image" alt="">
+        <h5>Courses</h5>
+        <input type="text" [(ngModel)] = "myCourse.title" class="form-control" (keyup.enter)= "addCourse()">
+        <div class="d-grid">
+            <button *ngIf="!edit"  class="btn btn-primary my-2" (click)="addCourse()"><i class="fa fa-plus"></i> Add</button>
+            <button *ngIf="edit" class="btn btn-warning my-2" (click)="updateCourse()"><i class="fa fa-refresh"></i> Update</button>
+        </div>
+        <ul class="list-group" *ngIf="courses.length">
+            <li class="list-group-item" *ngFor = "let course of courses; index as i">{{course.title}}
+                <button class="btn " [ngClass]="{
+                    'btn-light' : !course.active,
+                    'btn-success' : course.active,
+                }" (click) ="changeButton(course)">
+                    <i class="fa " [ngClass]="{
+                    'fa-power-off' : !course.active,
+                    'fa-check-circle' : course.active
+                    }"
+                    [ngStyle] ="{
+                        'font-size' : course.active ? '50px' : '20px'
+                    }"
+                    ></i>
+                </button>
+                <button class="btn btn-sm btn-danger me-2" (click)="deleteCourse(i)"><i class="fa fa-trash"></i> Delete</button>
+                <button class="btn btn-sm btn-warning me-2" (click)="editCourse(course)"><i class="fa fa-pencil"></i> Edit</button>
+            </li>
+            
+        </ul>
+    </div>
+</div>

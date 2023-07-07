@@ -1,0 +1,25 @@
+<div class="row my-4 text-center ">
+    <div class="col-md-6">
+        <!-- Reactive Form-->
+        <h3 class="my-3">Todo</h3>
+        <form [formGroup]="formToDo">
+            <div class="form-group"><label for="task"></label><input formControlName="task" type="text" id="task"
+                    class="form-control">
+                
+                    <div class="alert alert-danger" *ngIf="formToDo.get('task')?.touched && formToDo.get('task')?.invalid"> 
+                         <div *ngIf="formToDo.get('task')?.errors?.['required']" >This field is required</div>
+                         <div *ngIf="formToDo.get('task')?.errors?.['minlength']" >task should be more than 5 caracteres</div><div></div>
+
+                    </div>
+                </div>
+            <div class="form-group"><label for="description"></label><textarea formControlName="description"
+                    id="description" cols="30" rows="10" class="form-control"></textarea>
+                    <div class="alert alert-danger " *ngIf="formToDo.get('task')?.touched && formToDo.get('task')?.invalid"> 
+                        <div *ngIf="formToDo.get('description')?.errors?.['required']" >This field is required</div>
+                     <div></div>
+
+                   </div></div>
+            <div class="d-grid my-3"><button class="btn btn-primary"><i class="fa fa-plus"></i></button></div>
+        </form>
+    </div>
+</div>

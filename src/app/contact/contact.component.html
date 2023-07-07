@@ -1,0 +1,38 @@
+<div class="row my-4">
+    <div class="col-md-12 text-center">
+        <div class="h1">Contact us</div>
+    </div>
+</div>
+<!-- Driven  Form-->
+<div class="row my-5">
+    <form #contactForm="ngForm"  (ngSubmit)="saveContact(contactForm)">
+    <div class="col-md-6 mx-auto">
+        <div class="from-group">
+            <label for="email" >Email</label>
+            <input  required email type="email"  ngModel  #email="ngModel" name="email" id="email"
+            class="form-control">
+            <div *ngIf="email.touched && email.invalid" class=" alert alert-danger">
+
+                <div *ngIf="email.errors?.['required']">this field is required ! </div>
+                <div *ngIf="email.errors?.['email']" > this field not match to an adress email</div>
+               </div>
+        </div>
+        <div class="from-group"><label for="subject">Subject</label>
+            <input  required  ngModel  #subject="ngModel" minlength="5" maxlength="10" type="text" name="subject" id="subject"
+            class="form-control">
+            <div *ngIf="subject.touched && subject.invalid" class=" alert alert-danger">
+            <div *ngIf="subject.errors?.['required']">this field is required ! </div>
+            <div *ngIf="subject.errors?.['minlength']" > this field should be great than 5 caracteres</div>
+            <div *ngIf="subject.errors?.['maxlength']" > this field should be les than 10 caracteres</div></div>
+            </div>
+            <div class="from-group">
+                <label for="message">Message</label>
+                <textarea name="message" ngModel id="message" cols="30" rows="3"
+                class="form-control"></textarea>
+                
+            </div>
+    </div>
+    <div class="d-grid my-3"><button  [disabled]="contactForm?.['invalid']" type="submit" class="btn btn-success"><i class="fa fa-send"></i></button></div>
+</form>
+<!-- END -->
+</div>
